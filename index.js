@@ -53,3 +53,20 @@ for(const button of callButtons){
 const clearButton = document.getElementById('btn-clear').addEventListener('click', function(){
     callHistoryList.innerText = "";
 })
+
+// copy button functionalities 
+let copyCount = 0;
+const totalCopyCount = document.getElementById('copy-count');
+const copyButtons = document.getElementsByClassName('copy-btn');
+for(button of copyButtons){
+    button.addEventListener('click', function(){
+        const cardElement = this.parentNode.parentNode.parentNode.children[3].innerText;
+        console.log(cardElement);
+        
+        navigator.clipboard.writeText(cardElement).then(() =>{
+            alert(`Number ${cardElement} copied to clipboard`)
+        })
+        copyCount++;
+        totalCopyCount.innerText = copyCount;
+    })
+}
